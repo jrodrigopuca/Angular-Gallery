@@ -1,0 +1,8 @@
+{
+    "games":[
+     {"name":"Nyan JT", "description":"blabla", "image":"", "link":""},
+     {"name":"Protege", "description":"blabla", "image":"", "link":""},
+     {"name":"Rock Season", "description":"blabla", "image":"", "link":""},
+     {"name":"Pong PC", "description":"blabla", "image":"", "link":""}        
+    ]
+}
