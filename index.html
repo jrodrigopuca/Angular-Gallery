@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -15,6 +16,8 @@
     <div ng-controller="myController as store">
         <div ng-repeat="product in store.products">
             {{product.name}}
+            {{product.description}}
+           <img ng-src="{{product.image}}">
         </div>
     </div>
 
