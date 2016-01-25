@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>Galería</title>
     <!--
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
         -->
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body ng-app="myApp">
-    <h1> Galería de juegos </h1>
-    <div ng-controller="myController as store">
-        <div ng-repeat="product in store.products">
-            {{product.name}}
-            {{product.description}}
-           <img ng-src="{{product.image}}">
+    <h1 class="text-center"> Galería de juegos </h1>
+    <br>
+    <div ng-controller="myController as store" class="row container-fluid text-center">
+        <div  ng-repeat="product in store.products" class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div id="divPrincipal">
+            <img ng-src="{{product.image}}" class="img-circle">
+            <h2> {{product.name}} </h2>
+            <p> {{product.description | limitTo: 100}} </p>
+            
+            <a href="{{product.link}}" class="btn btn-default" role="button">
+                <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+            </a>
+            <br>
+            </div>
         </div>
     </div>
 
 
 </body>
+
 </html>
