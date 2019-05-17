@@ -1,0 +1,9 @@
+{
+    "name":"Gallery",
+    "short_name":"Gallery",
+    "icons":[{}],
+    "start_url":"/index.html",
+    "display":"standalone",
+    "background_color":"#3EE4B8",
+    "theme_color":"#2FF3BA"
+}

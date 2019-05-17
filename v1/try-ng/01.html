@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Test</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+
+    <!--            Empezar             -->
+    <!--
+    <h2> Ejemplo simple con ng-model y ng-bind </h2>
+    <div ng-app="">
+        <input type="text" ng-model="name">
+        <p ng-bind="name"></p>
+    </div>
+    -->
+
+    <!--
+    <h2> Ejemplo simple con valor inicial </h2>
+    <div ng-app="" ng-init="name='Juan'">
+        <input type="text" ng-model="name">
+        <p ng-bind="name"></p>
+    </div>
+    -->
+
+    <!--            Expresiones con bind             -->
+
+    <!--
+    <h2> Probando expresiones </h2>
+    <p> el doble llave se supone que es el binding</p>
+    <div ng-app="" >
+        <p>Nombre inicial {{ 10+10 }} </p>
+    </div>
+    -->
+
+    <!--
+    <h2> Probando expresiones </h2>
+    <div ng-app="App1" ng-controller="Ctrl1" >
+        Nombre: <input type="text" ng-model="nombre">
+        Apellido: <input type="text" ng-model="apellido">
+        Nombre Completo: {{nombre + " "+ apellido}}
+    </div>
+    <script>
+        var app= angular.module('App1', []);
+        app.controller('Ctrl1', function($scope){
+            $scope.nombre="J"; // inicial
+            $scope.apellido="P"; // inicial
+        })
+    </script>
+    -->
+
+    <!--
+    <h2> Probando expresiones con objetos</h2>
+    <div ng-app="" ng-init="persona={nombre:'J', apellido:'P'}">
+        Nombre completo: {{persona.nombre + " "+ persona.apellido}}
+    </div>
+    -->
+
+    <!--            Directivas             -->
+    <!--
+    <h2> Creando directiva </h2>
+    <p> Se supone que es una propiedad o acción desde el html como el ng-app o ng-init o ng-model</p>
+    <div ng-app="App2" test-directiva></div>
+    <script>
+        var app = angular.module("App2", []);
+
+        // dato a tener en cuenta en html se llama "test-directiva" en JS es testDirectiva
+        app.directive("testDirectiva", function(){
+            return {template: "<b> Directiva creada </b>"};
+        })
+    </script>
+    -->
+
+    <!--
+    <h2> Directiva como elemento tag </h2>
+    <div ng-app="App3">
+        <hola></hola>
+    </div>
+    <script>
+        var app = angular.module("App3", []);
+        app.directive("hola", function(){
+            return {
+                restrict: "E", //E: elemento, A: atributo, C:clase, M:comentario
+                template: "<p> Hello World </p>"
+            }
+        })
+    </script>
+    -->
+
+    <!--            Forms            -->
+    <!--
+    <h2> Repetir elementos </h2>
+    <p> Usando directiva ng-repeat </p>
+    <div ng-app="" ng-init="numeros=[1,2,3,4]">
+        <ul>
+            <li ng-repeat="x in numeros">
+                {{x}}
+            </li>
+        </ul>
+    </div>
+    -->
+
+    <!--
+    <h2>Validación</h2>
+    <style> input.ng-invalid{color: red;}</style>
+    <form ng-app="" name="frm">
+        Email: <input type="email" ng-model="texto" name="email1" required>
+        <span ng-show="frm.email1.$error.email"> No es válido </span>
+
+
+        <p> Es válido: {{frm.email1.$valid}} </p>
+        <p>No es válido: {{frm.email1.$invalid}}</p>
+        <p>La entrada no ha sido usada: {{frm.email1.$pristine}}</p>
+        <p>La entrada ha sido usada: {{frm.email1.$dirty}}</p>
+        <p>La entrada ha sido borrada: {{frm.email1.$touched}}</p>
+        <a href="https://scotch.io/tutorials/angularjs-form-validation"> Mas info </a>
+    </form>
+    -->
+
+    <!--            Eventos           -->
+    <!--
+    <h2>Evento click</h2>
+    <div ng-app="app4" ng-controller="Ctrl4">
+        <h1 ng-click="hazAlgo()"> {{algo}} </h1>
+    </div>
+    <script>
+        var app= angular.module('app4', []);
+        app.controller('Ctrl4', function($scope){
+            $scope.algo="click aqui";
+            $scope.hazAlgo=function(){
+                $scope.algo="Bob, do something!"
+            }
+
+        })
+    </script>
+    -->
+
+
+    <!--            Controlador           -->
+    <!--
+    <h2> Traer datos desde controlador </h2>
+    <div ng-app="app5" ng-controller="Ctrl5">
+        <select ng-model="seleccionado">
+            <option ng-repeat="x in productos" value="{{x.nombre}}">
+                <p>{{x.nombre}}</p>
+                <p>{{x.precio}}</p>
+            </option>
+        </select>
+        <p ng-bind="seleccionado"></p>
+    </div>
+    <script>
+        var app= angular.module ('app5', []);
+        app.controller('Ctrl5', function($scope){
+            $scope.productos= [{nombre:'cafe', precio: '10'},{nombre:'medialuna', precio:'20'}]
+        })
+    </script>
+    -->
+
+    <!--            $scope/$rootScope           -->
+    <!--
+    <h2> RootScope </h2>
+    <div ng-app="app6">
+        {{texto}}
+        <div ng-controller="Ctrl6">
+            {{texto}}
+        </div>
+    </div>
+    <script>
+        const app= angular.module('app6', []);
+
+        app.run(function($rootScope){
+            $rootScope.texto="Soy root"
+        })
+
+        app.controller('Ctrl6', function($scope){
+            $scope.texto="Soy scope"
+        })
+    </script>
+    -->
+
+    <!--            Filtrado           -->
+    <!--
+    <h2>Filtrado simple</h2>
+    <div ng-app="app7" ng-controller="Ctrl7">
+        <input type="text" ng-model="entrada">
+        <ul>
+            <li ng-repeat="x in nombres | filter: entrada">
+                {{x}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const app = angular.module('app7', []);
+        app.controller('Ctrl7', function ($scope) {
+            $scope.nombres = ["Gustavo", "Simón", "Wolfgang", "Antonio", "Dimitri"]
+        })
+    </script>
+    -->
+
+    <!--
+    <h2>Filtrado Compuesto</h2>
+    <div ng-app="app7" ng-controller="Ctrl7">
+        <select ng-model="seleccionador">
+            <option value="" selected>Todos</option>
+            <option value="Estudiante">Estudiante</option>
+            <option value="Investigador">Investigador</option>
+
+        </select>
+        <input type="text" ng-model="entrada" placeholder="Filtrar nombre">
+        <ul>
+            <li ng-repeat="x in personas | filter:{nombre: entrada, ocupacion: seleccionador}">
+                <p>{{x.nombre}}  <i>{{x.ocupacion}}</i> </p>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const app = angular.module('app7', []);
+
+        app.controller('Ctrl7', function ($scope) {
+            $scope.personas = [
+                {nombre:"Gustavo", ocupacion: "Estudiante"}, 
+                {nombre:"Gustavo2", ocupacion: "Estudiante"}, 
+                {nombre:"Simón", ocupacion: "Investigador"}, 
+                {nombre:"Wolfgang", ocupacion: "Estudiante"}, 
+                {nombre:"Antonio", ocupacion: "Investigador"},
+                {nombre:"Dimitri", ocupacion: "Estudiante"}];
+        })
+    </script>
+    -->
+
+    <!--            Servicios           -->
+
+    <!-- 
+    <h2> Servicio $location </h2>
+    <div ng-app="app8" ng-controller="Ctrl8">
+        Estoy en <b>{{url}} </b>
+    </div>
+    <script>
+        const app = angular.module('app8', []);
+        app.controller('Ctrl8', function($scope, $location){
+            $scope.url=$location.absUrl();
+        })
+    </script>
+    -->
+
+</body>
+
+</html>
