@@ -4,7 +4,8 @@ html{
 }
 
 body{
-    background-color: rgb(109, 109, 108);
+    background-color: #292623;
+    color:white;
 }
 
 @font-face{
